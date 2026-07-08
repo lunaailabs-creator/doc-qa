@@ -1,0 +1,26 @@
+kind = "web"
+previewPath = "/"
+title = "Document Q&A"
+version = "1.0.0"
+id = "artifacts/document-qa"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20041
+
+[services.env]
+PORT = "20041"
+
+[services.development]
+run = "pip install -r requirements.txt --quiet && python main.py"
+
+[services.production]
+build = [ "pip", "install", "-r", "requirements.txt" ]
+
+[services.production.run]
+args = [ "python", "main.py" ]
+
+[services.production.run.env]
+PORT = "20041"
